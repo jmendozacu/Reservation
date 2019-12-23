@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="layout_load_before">
+        <observer name="reservation_layout_load" instance="Magenest\Reservation\Observer\Layout\LayoutLoadBefore"/>
+    </event>
+
+    <event name="catalog_product_save_after">
+        <observer name="reservation_product_save" instance="Magenest\Reservation\Observer\Product\Save"  />
+    </event>
+
+    <event name="admin_user_save_after">
+        <observer name="reservation_admin_user_save" instance="Magenest\Reservation\Observer\Staff\Save"  />
+    </event>
+
+    <event name="controller_action_postdispatch_adminhtml_user_delete">
+        <observer name="reservation_admin_user_delete" instance="Magenest\Reservation\Observer\Staff\Delete"  />
+    </event>
+
+    <event name="catalog_product_delete_after_done">
+        <observer name="reservation_product_delete_after_done" instance="Magenest\Reservation\Observer\Product\Delete"  />
+    </event>
+
+</config>

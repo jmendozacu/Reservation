@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\Reservation\Block\Adminhtml\StaffRule\Edit" name="reservation_staff_rule_edit"/>
+        </referenceContainer>
+    </body>
+    <referenceContainer name="left">
+        <block class="Magenest\Reservation\Block\Adminhtml\StaffRule\Edit\Tabs" name="reservation_staff_rule_tabs">
+            <block class="Magenest\Reservation\Block\Adminhtml\StaffRule\Edit\Tab\General" name="reservation_staff_rule_tab_general"/>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">reservation_staff_rule_general</argument>
+                <argument name="block" xsi:type="string">reservation_staff_rule_tab_general</argument>
+            </action>
+        </block>
+    </referenceContainer>
+</page>

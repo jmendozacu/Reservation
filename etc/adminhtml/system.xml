@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="reservation" translate="label" sortOrder="900">
+            <label>Magenest</label>
+        </tab>
+        <section id="magenest_order_config" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Booking And Reservation Configuration</label>
+            <tab>reservation</tab>
+            <resource>Magenest_Reservation::config_order</resource>
+            <group id="config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Configuration</label>
+                <field id="default_status" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Reservation Status</label>
+                    <comment>Define default status for new-placed orders</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Options</source_model>
+                </field>
+                <field id="sender" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+            </group>
+            <group id="template" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Staff and Customer Email Template Configuration</label>
+                <field id="email_staff_enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Send Email To Staff Automatically</label>
+                    <comment>Enable or disable send email to staff when order status change</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="staff_confirmed" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Confirmed</label>
+                    <comment>Select email template for confirmed orders</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Template</source_model>
+                </field>
+                <field id="staff_unconfirmed" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Unconfirmed</label>
+                    <comment>Select email template for unconfirmed orders</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Template</source_model>
+                </field>
+                <field id="staff_canceled" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Canceled</label>
+                    <comment>Select email template for canceled orders</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Template</source_model>
+                </field>
+                <field id="email_customer_enable" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Send Email To Customer Automatically</label>
+                    <comment>Enable or disable send email to customer when order status change</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="customer_confirmed" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Confirmed</label>
+                    <comment>Select email template for confirmed orders</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Template</source_model>
+                </field>
+                <field id="customer_unconfirmed" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Unconfirmed</label>
+                    <comment>Select email template for unconfirmed orders</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Template</source_model>
+                </field>
+                <field id="customer_canceled" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Canceled</label>
+                    <comment>Select email template for canceled orders</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Template</source_model>
+                </field>
+            </group>
+            <group id="cancel" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cancel Request Configuration</label>
+                <field id="number" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>The maximum number of days customer can cancel order</label>
+                    <comment>Define the maximum number of days customer can cancel order</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="staff_refuse_email" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Email to staff(s) after admin refuse their cancel requests</label>
+                    <comment>Select email template for refused cancel requests</comment>
+                    <source_model>Magenest\Reservation\Model\Config\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

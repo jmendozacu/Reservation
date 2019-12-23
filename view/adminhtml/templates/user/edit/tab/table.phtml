@@ -1,0 +1,218 @@
+<?php
+$items = $block->getStaffCollection();
+
+$counter = 1;
+?>
+
+<legend class="admin__legend legend">
+    <span><?= __("User Schedule manager")?></span>
+</legend><br><br><br>
+
+<button id="add_staff_schedule" type="button"><?= __("Add Schedule")?></button><br><br>
+
+<style>
+    td {
+        height: 40px;
+        vertical-align: middle;
+    }
+
+    table {
+        width: 100%;
+        border: 1px solid black;
+    }
+</style>
+
+<table id="staff_schedule_table">
+    <thead>
+    <tr>
+        <td align="center"> <?php echo __("Reservation Option") ?></td>
+        <td align="center"> <?php echo __("Weekday") ?></td>
+        <td align="center"> <?php echo __("Product ID") ?></td>
+        <td align="center"> <?php echo __("Start time") ?></td>
+        <td align="center"> <?php echo __("End time") ?></td>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr data-order="0" class="sample-template" style="display: none;">
+        <td>
+            <select name="staff[0][option]">
+                <option value="0"><?php echo __("Some hours in 1 day") ?> </option>
+                <option value="1"><?php echo __("Full day") ?> </option>
+            </select>
+        </td>
+        <td>
+            <select name="staff[0][weekday]">
+                <option value="1"><?php echo __("Monday") ?> </option>
+                <option value="2"><?php echo __("Tuesday") ?> </option>
+                <option value="3"><?php echo __("Wednesday") ?> </option>
+                <option value="4"><?php echo __("Thursday") ?></option>
+                <option value="5"><?php echo __("Friday") ?></option>
+                <option value="6"><?php echo __("Saturday") ?></option>
+                <option value="7"><?php echo __("Sunday") ?></option>
+            </select>
+        </td>
+        <td>
+            <input type="number" name="staff[0][product_id]">
+        </td>
+        <td>
+            <input type="time" name="staff[0][from_time]">
+        </td>
+        <td>
+            <input type="time" name="staff[0][to_time]">
+        </td>
+        <td>
+            <button type="button" name="staff[0][del_btn]"><?= __("Delete")?></button>
+        </td>
+    </tr>
+
+    <?php foreach ($items as $item) { ?>
+        <tr data-order="0" class="sample-template">
+            <td>
+                <select name="staff[<?php echo $counter ?>][option]">
+                    <option <?php if ($item['option'] == 0) {
+                            ?>selected="selected"
+                            <?php } ?>value="0"><?php echo __("Some hours in 1 day") ?> </option>
+                    <option <?php if ($item['option'] == 1) {
+                            ?>selected="selected"
+                            <?php } ?>value="1"><?php echo __("Full day") ?> </option>
+                </select>
+            </td>
+            <td>
+                <select name="staff[<?php echo $counter ?>][weekday]">
+                    <option <?php if ($item['weekday'] == 1) {
+                            ?>selected="selected"
+                            <?php } ?>value="1"><?php echo __("Monday") ?> </option>
+                    <option <?php if ($item['weekday'] == 2) {
+                            ?>selected="selected"
+                            <?php } ?>value="2"><?php echo __("Tuesday") ?> </option>
+                    <option <?php if ($item['weekday'] == 3) {
+                            ?>selected="selected"
+                            <?php } ?>value="3"><?php echo __("Wednesday") ?> </option>
+                    <option <?php if ($item['weekday'] == 4) {
+                            ?>selected="selected"
+                            <?php } ?>value="4"><?php echo __("Thursday") ?></option>
+                    <option <?php if ($item['weekday'] == 5) {
+                            ?>selected="selected"
+                            <?php } ?>value="5"><?php echo __("Friday") ?></option>
+                    <option <?php if ($item['weekday'] == 6) {
+                            ?>selected="selected"
+                            <?php } ?>value="6"><?php echo __("Saturday") ?></option>
+                    <option <?php if ($item['weekday'] == 7) {
+                            ?>selected="selected"
+                            <?php } ?>value="7"><?php echo __("Sunday") ?></option>
+                </select>
+            </td>
+            <td>
+                <input type="number" name="staff[<?php echo $counter ?>][product_id]"
+                       value="<?php echo $item['product_id']; ?>">
+            </td>
+            <td>
+                <input type="time" name="staff[<?php echo $counter ?>][from_time]"
+                       value="<?php echo $item['from_time'] ?>">
+            </td>
+            <td>
+                <input type="time" name="staff[<?php echo $counter ?>][to_time]"
+                       value="<?php echo $item['to_time'] ?>">
+            <td>
+                <button type="button" name="staff[<?php echo $counter ?>][del_btn]">Delete</button>
+            </td>
+        </tr>
+        <?php $counter++;
+    } ?>
+    </tbody>
+</table>
+
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+        "use strict";
+        var addStaffSchedule = document.getElementById('add_staff_schedule');
+        var scheduleTable = document.getElementById('staff_schedule_table');
+        /**
+         * set function to delete button
+         */
+        var trElements = $(scheduleTable).find('tbody').find('tr');
+        $(trElements).each(function (index, element) {
+            var button = $(element).find('button');
+            button.click(function () {
+                $(button).closest('tr').remove();
+            });
+
+            var option = element.children[0];
+            var start_time = element.children[3];
+            var end_time = element.children[4];
+            if ($(option).find('select').val() == 1) {
+                $(start_time).find('input').prop('readonly', true);
+                $(end_time).find('input').prop('readonly', true);
+            } else {
+                $(start_time).find('input').prop('readonly', false);
+                $(end_time).find('input').prop('readonly', false);
+            }
+            $(option).change(function () {
+                if ($(this).find('select').val() == 1) {
+                    $(start_time).find('input').prop('readonly', true);
+                    $(end_time).find('input').prop('readonly', true);
+                } else {
+                    $(start_time).find('input').prop('readonly', false);
+                    $(end_time).find('input').prop('readonly', false);
+                }
+            });
+
+        });
+        /**
+         * set function to add button
+         */
+        $(addStaffSchedule).click(function () {
+            var rowIds = [];
+            var template = $(scheduleTable).find('.sample-template').html();
+            var trElements = $(scheduleTable).find('tbody').find('tr');
+            $(trElements).each(function (index, element) {
+                if ($(element).data('order') != null) {
+                    rowIds.push($(element).data('order'));
+                }
+            });
+            var row_id = Math.min.apply(rowIds, rowIds);
+            var next_id = parseInt(row_id) - 1;
+            var templateRow = '<tr ' + ' data-order =' + next_id + '>' + template;
+            var valueFind = '/value=\".+\"/';
+            templateRow = templateRow.replace(valueFind, ' ');
+            var find = "[0]";
+            var replace = "[" + next_id + "]";
+            for (var i = 0; i < 5; i++) {
+                templateRow = templateRow.replace(find, replace);
+            }
+            find = '_0_';
+            replace = '_' + next_id + '_';
+            templateRow = templateRow.replace(find, replace);
+            templateRow = templateRow.replace('style="display: none;', '');
+            templateRow = templateRow + '</tr>';
+            $(scheduleTable).find('tbody').prepend(templateRow);
+            trElements = $(scheduleTable).find('tbody').find('tr');
+            $(trElements).each(function (index, element) {
+                var button = $(element).find('button');
+                button.click(function () {
+                    $(button).closest('tr').remove();
+                });
+            });
+            /**
+             * add function to option column
+             */
+            $(trElements).each(function (index, element) {
+                var option = element.children[0];
+                var start_time = element.children[3];
+                var end_time = element.children[4];
+                $(option).change(function () {
+                    if ($(this).find('select').val() == 1) {
+                        $(start_time).find('input').prop('readonly', true);
+                        $(end_time).find('input').prop('readonly', true);
+                    } else {
+                        $(start_time).find('input').prop('readonly', false);
+                        $(end_time).find('input').prop('readonly', false);
+                    }
+                });
+            });
+        });
+    });
+</script>

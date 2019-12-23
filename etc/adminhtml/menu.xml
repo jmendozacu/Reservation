@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_Reservation::reservation" title="Reservation" module="Magenest_Reservation" sortOrder="21" dependsOnModule="Magenest_Reservation" resource="Magenest_Reservation::reservation"/>
+
+        <add id="Magenest_Reservation::orders" title="Reservation Orders" module="Magenest_Reservation" sortOrder="100" parent="Magenest_Reservation::reservation" action="reservation/order/index" resource="Magenest_Reservation::orders"/>
+        <add id="Magenest_Reservation::cancel" title="Cancel Requests" module="Magenest_Reservation" sortOrder="100" parent="Magenest_Reservation::reservation" action="reservation/cancel/index" resource="Magenest_Reservation::cancel"/>
+        <add id="Magenest_Reservation::staff_rule" title="Staff Price Rules" module="Magenest_Reservation" sortOrder="100" parent="Magenest_Reservation::reservation" action="reservation/staffRule/index" resource="Magenest_Reservation::staff_rule"/>
+        <add id="Magenest_Reservation::special_date" title="Special Date Price Rules" module="Magenest_Reservation" sortOrder="100" parent="Magenest_Reservation::reservation" action="reservation/special/index" resource="Magenest_Reservation::special_date"/>
+        <add id="Magenest_Reservation::reservation_rule" title="Reservation Price Rules" module="Magenest_Reservation" sortOrder="100" parent="Magenest_Reservation::reservation" action="reservation/reservationRule/index" resource="Magenest_Reservation::reservation_rule"/>
+    </menu>
+</config>

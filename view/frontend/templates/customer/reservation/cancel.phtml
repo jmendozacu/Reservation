@@ -1,0 +1,23 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: hoang
+ * Date: 19/07/2016
+ * Time: 14:25
+ */
+/** @var \Magenest\Reservation\Block\Customer\Reservation\Cancel $block */
+$data = $block->getCancelRequestData();
+?>
+
+<div><span>Your cancel request has been sent!</span></div>
+<div><span>We will contact you as soon as possible to confirm the request.</span></div>
+<div>
+    <span>Request information:</span><br>
+    <span> - Order Id: <strong><?php echo $data['order_id']; ?></strong></span><br>
+    <span> - Reservation Date: <strong><?php echo $data['date']; ?></strong></span><br>
+    <span> - Start time: <strong><?php echo $data['from_time']; ?></strong></span><br>
+    <span> - End time: <strong><?php echo $data['to_time']; ?></strong></span><br>
+    <span> - Slots: <strong><?php echo $data['slots']; ?></strong></span><br>
+    <span> - Product name: <strong><?php echo $data['order_item_name']; ?></strong></span><br>
+    <span> - Staff name: <strong><?php echo $data['user_name']; ?></strong></span><br>
+</div>

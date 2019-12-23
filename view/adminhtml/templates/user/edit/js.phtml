@@ -1,0 +1,60 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: hoang
+ * Date: 05/07/2016
+ * Time: 11:59
+ */
+$path = $block->getAvatarImage();
+?>
+
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+        'use strict';
+        var path = '<?php echo $path;?>';
+
+        if (path == '0') {
+            $('#reservation_avatar_container').hide();
+            $('#reservation_is_deleted').attr('value', 'deleted');
+        } else {
+            $('#reservation_avatar_container').show();
+            $('#reservation_user_avatar').attr('src', path);
+        }
+
+        $("#reservation_delete_avatar").click(function () {
+            $('#reservation_is_deleted').attr('value', 'deleted');
+            $('#reservation_avatar_container').remove();
+        });
+        var orderGrid = document.getElementsByClassName('admin__data-grid-outer-wrap');
+        var tab1 = document.getElementById('page_tabs_schedule_section');
+        var tab2 = document.getElementById('page_tabs_intro_section');
+        var tab3 = document.getElementById('page_tabs_reservation_section');
+        var tab4 = document.getElementById('page_tabs_main_section');
+        var tab5 = document.getElementById('page_tabs_roles_section');
+
+
+        var lastOrderGrid;
+        $(orderGrid).each(function (index, element) {
+            lastOrderGrid = element;
+        });
+        lastOrderGrid.style.display = 'none';
+        $(tab3).click(function () {
+            lastOrderGrid.style.display = 'block';
+        });
+        $(tab1).click(function () {
+            lastOrderGrid.style.display = 'none';
+        });
+        $(tab2).click(function () {
+            lastOrderGrid.style.display = 'none';
+        });
+        $(tab4).click(function () {
+            lastOrderGrid.style.display = 'none';
+        });
+        $(tab5).click(function () {
+            lastOrderGrid.style.display = 'none';
+        });
+
+    });
+</script>

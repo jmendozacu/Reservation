@@ -1,0 +1,85 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: hoang
+ * Date: 07/07/2016
+ * Time: 14:05
+ */
+?>
+<br>
+<?php if ($block->isReservationProduct() == true) { ?>
+    <?php if ($block->isStaffNecessary() == true) { ?>
+        <?php if ($block->getOption() == 0) { ?>
+            <div class="reservation_fields_option_0" data-mage="<?php echo $block->getCurrentProductId(); ?>">
+                <div id="panel_header" class="panel_reservations">
+                    <div class="panel_body_option_0">
+                        <span class="date-icon"></span>
+                        <input id="reservation_date_option_0" placeholder="<?= __("Select a date ...")?>"
+                               data-mage-init='{"Magenest_Reservation/js/reservation_option_0":{ "dateSelector": "#reservation_date_option_0" }}'
+                               class="picker" name="additional_options[reservation_date]" type="text"/>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div id="reservation_option_0_popup" style="display: none">
+                <!-- ko template: {name: 'Magenest_Reservation/reservation_option_0', data: {}} --><!-- /ko -->
+            </div>
+            <input id="reservation_option_0_final_schedule" name="additional_options[reservation_schedule]"
+                   style="display: none;">
+        <?php } ?>
+        <?php if ($block->getOption() == 1) { ?>
+            <div class="reservation_fields_option_1" data-mage="<?php echo $block->getCurrentProductId(); ?>">
+                <div id="panel_header" class="panel_reservations">
+                    <div class="panel_body_option_1">
+                        <input class="action primary" id="reservation_option_1_main_clickMe" type="button"
+                               value="<?= __("Click Here To Make Reservation")?>" style="height: 40px; padding: 10px;">
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div id="reservation_option_1_popup" style="display: none; width: 1000px">
+                <!-- ko template: {name: 'Magenest_Reservation/reservation_option_1', data: {}} --><!-- /ko -->
+            </div>
+            <input id="reservation_option_1_final_schedule" name="additional_options[reservation_schedule]"
+                   style="display: none;">
+        <?php } ?>
+    <?php } ?>
+    <?php if ($block->isStaffNecessary() == false) { ?>
+        <?php if ($block->getOption() == 0) { ?>
+            <div class="reservation_fields_option_2" data-mage="<?php echo $block->getCurrentProductId(); ?>">
+                <div id="panel_header" class="panel_reservations">
+                    <div class="panel_body_option_2">
+                        <span class="date-icon"></span>
+                        <input id="reservation_date_option_2" placeholder="<?= __("Select a date ...")?> "
+                               data-mage-init='{"Magenest_Reservation/js/reservation_option_2":{ "dateSelector": "#reservation_date_option_2" }}'
+                               class="picker" name="additional_options[reservation_date]" type="text"/>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div id="reservation_option_2_popup" style="display: none">
+                <!-- ko template: {name: 'Magenest_Reservation/reservation_option_2', data: {}} --><!-- /ko -->
+            </div>
+            <input id="reservation_option_2_final_schedule" name="additional_options[reservation_schedule]"
+                   style="display: none;">
+        <?php } ?>
+        <?php if ($block->getOption() == 1) { ?>
+            <div class="reservation_fields_option_3" data-mage="<?php echo $block->getCurrentProductId(); ?>">
+                <div id="panel_header" class="panel_reservations">
+                    <div class="panel_body_option_3">
+                        <input class="action primary" id="reservation_option_3_main_clickMe" type="button"
+                               value="<?= __("Click Here To Make Reservation")?>"
+                               style="height: 40px; padding: 10px; color: #24ff13;">
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div id="reservation_option_3_popup" style="display: none; width: 1000px">
+                <!-- ko template: {name: 'Magenest_Reservation/reservation_option_3', data: {}} --><!-- /ko -->
+            </div>
+            <input id="reservation_option_3_final_schedule" name="additional_options[reservation_schedule]"
+                   style="display: none;">
+        <?php } ?>
+    <?php } ?>
+<?php } ?>
+<br>

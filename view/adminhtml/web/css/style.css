@@ -1,0 +1,10 @@
+#reservation_user_avatar {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    border: solid 2px lightblue;
+}
+
+#reservation_delete_avatar {
+    text-align: center;
+}

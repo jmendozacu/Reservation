@@ -1,0 +1,59 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: hoang
+ * Date: 18/07/2016
+ * Time: 20:15
+ */
+/** @var \Magenest\Reservation\Block\Customer\Reservation\ReservationList $block */
+$cancelOrderItems = $block->getCancelOrders();
+$orderItems = $block->getOrders();
+?>
+
+<table id="customer-reservation-order-list" class="data table table-downloadable-products">
+    <?php if (sizeof($cancelOrderItems) > 0) { ?>
+        <thead>
+        <tr>
+            <th><?php echo __('Order #') ?></th>
+            <th><?php echo __('Product Name') ?></th>
+            <th><?php echo __('Reservation Date') ?></th>
+            <th><?php echo __('Start Time') ?></th>
+            <th><?php echo __('End Time') ?></th>
+            <th><?php echo __('Staff Name') ?></th>
+            <th><?php echo __('Slots') ?></th>
+            <th><?php echo __('Reservation Status') ?></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach ($cancelOrderItems as $item) { ?>
+            <tr>
+                <td><?php echo $item['order_id'] ?></td>
+                <td><?php echo $item['order_item_name'] ?></td>
+                <td><?php echo $item['date'] ?></td>
+                <td><?php echo $item['from_time'] ?></td>
+                <td><?php echo $item['to_time'] ?></td>
+                <td><?php echo $item['user_name'] ?></td>
+                <td><?php echo $item['slots'] ?></td>
+                <td><?php echo $item['reservation_status'] ?></td>
+                <td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                    <a href="<?php echo $block->getViewUrl($item['order_id']) ?>" class="action view">
+                        <span><?php echo __('View Order') ?></span>
+                    </a>
+                    <?php if ($item['cancel_request'] == 1) { ?>
+                        <span><?php echo __('Cancel Request Sent') ?></span>
+                    <?php } ?>
+                    <?php if ($item['cancel_request'] != 1) { ?>
+                        <?php if ($item['cancel'] == true) { ?>
+                            <a href="<?php echo $block->getReservationCancelUrl($item)
+                            ?>">
+                                <span><?php echo __('Request Cancel') ?></span>
+                            </a>
+                        <?php } ?>
+                    <?php } ?>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    <?php } ?>
+</table>

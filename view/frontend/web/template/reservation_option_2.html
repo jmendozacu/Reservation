@@ -1,0 +1,60 @@
+<div class="block-bk block-bk_style3">
+    <div class="block-bk-schedule">
+        <div class="block-title">
+            <span class="title" data-bind="i18n: 'product schedule'"></span>
+        </div>
+        <div class="block-content">
+            <ul id="reservation_option_2_time_list">
+            </ul>
+        </div>
+        <input id="reservation_option_2_time_temp" style="display: none;">
+    </div>
+
+    <div class="block-bk-staff">
+        <div class="block-title">
+            <span class="title" data-bind="i18n: 'Reservation'"></span>
+        </div>
+        <div class="block-content">
+            <ul>
+                <li>
+                    <strong class="name">
+                        <span data-bind="i18n: 'Event'"></span>
+                    </strong>
+                    <div id="reservation_option_2_event_notify" class="des">
+                    </div>
+                    <strong class="name">
+                        <span data-bind="i18n: 'Maximum Number Of Slots'"></span>
+                    </strong>
+                    <div id="reservation_option_2_numberOfSlots_notify" class="des">
+                    </div>
+                    <strong class="name">
+                        <span data-bind="i18n: 'Number Of Slots You Want To Purchase'"></span>
+                    </strong>
+                    <input id="reservation_option_2_numberOfSlots" type="number" value="1" min="0" class="des">
+                    <strong class="name">
+                        <span data-bind="i18n: 'Service Price'"></span>
+                    </strong>
+                    <div id="reservation_option_2_current_price" class="des">
+                    </div>
+                    <div id="reservation_option_2_addToCart" class="actions">
+                        <button class="btn btn-addcart">
+                            <span data-bind="i18n: 'Add To Cart'"></span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="block-bk-cart">
+        <div class="block-title">
+
+            <span class="title" data-bind="i18n: 'Your Cart'"></span>
+        </div>
+        <div class="block-content">
+            <ul id="reservation_option_2_cart">
+            </ul>
+        </div>
+    </div>
+</div>
+<input id="reservation_option_2_cart_temp" style="display: none;">

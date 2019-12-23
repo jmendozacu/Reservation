@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="reservation_product_add" type="\Magenest\Reservation\Model\Plugin\AddItem" sortOrder="20" disabled="false" />
+    </type>
+    <!--Order Grid-->
+    <virtualType name="Magenest\Reservation\Model\ResourceModel\Grid\Order" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_reservation_order</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+    <!--Cancel Grid-->
+    <virtualType name="CancelGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CancelPostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magenest\Reservation\Model\Resource\Cancel\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CancelGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magenest\Reservation\Model\ResourceModel\Cancel\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_reservation_cancel_request</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Cancel</argument>
+        </arguments>
+    </virtualType>
+    <!--Staff Rule-->
+    <virtualType name="StaffRuleGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="StaffRulePostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magenest\Reservation\Model\Resource\StaffRule\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">StaffRuleGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magenest\Reservation\Model\ResourceModel\StaffRule\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_reservation_staff_price_rule</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Reservation\Model\ResourceModel\StaffRule</argument>
+        </arguments>
+    </virtualType>
+    <!--Special Date Price Rule-->
+    <virtualType name="SpecialGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SpecialPostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magenest\Reservation\Model\Resource\Special\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SpecialGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magenest\Reservation\Model\ResourceModel\Special\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_reservation_special_date</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Special</argument>
+        </arguments>
+    </virtualType>
+    <!--Reservation Rule-->
+    <virtualType name="ReservationRuleGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="ReservationRulePostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magenest\Reservation\Model\Resource\ReservationRule\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ReservationRuleGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magenest\Reservation\Model\ResourceModel\ReservationRule\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_reservation_product_price_rule</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Reservation\Model\ResourceModel\ReservationRule</argument>
+        </arguments>
+    </virtualType>
+    <!--Staff Order-->
+    <virtualType name="Magenest\Reservation\Model\ResourceModel\Staff\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_reservation_order</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="reservation_order_listing_data_source" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Grid\Order</item>
+                <item name="reservation_cancel_listing_data_source" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Cancel\Grid\Collection</item>
+                <item name="reservation_staffRule_listing_data_source" xsi:type="string">Magenest\Reservation\Model\ResourceModel\StaffRule\Grid\Collection</item>
+                <item name="reservation_special_listing_data_source" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Special\Grid\Collection</item>
+                <item name="reservation_reservationRule_listing_data_source" xsi:type="string">Magenest\Reservation\Model\ResourceModel\ReservationRule\Grid\Collection</item>
+                <item name="reservation_staff_listing_data_source" xsi:type="string">Magenest\Reservation\Model\ResourceModel\Staff\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

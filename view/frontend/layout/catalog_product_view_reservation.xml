@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_Reservation::css/style3.css"/>
+        <css src="Magenest_Reservation::css/style.css"/>
+        <script src="Magenest_Reservation::js/reservation_option_1.js"/>
+        <script src="Magenest_Reservation::js/reservation_option_3.js"/>
+        <!--<script src="Magenest_Reservation::js/reservation_option_0.js"/>-->
+        <!--<script src="Magenest_Reservation::js/reservation_option_2.js"/>-->
+    </head>
+    <body>
+        <referenceBlock name="product.info.options.wrapper">
+            <block class="Magenest\Reservation\Block\Product\Reservation" name="product.info.options.reservation"
+                   as="reservation_options" template="catalog/product/reservation.phtml" cacheable="false"/>
+        </referenceBlock>
+    </body>
+</page>

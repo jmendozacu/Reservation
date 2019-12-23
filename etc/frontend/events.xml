@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="layout_load_before">
+        <observer name="reservation_layout_load_frontend" instance="Magenest\Reservation\Observer\Layout\LayoutLoadBeforeFrontend"/>
+    </event>
+    <event name="catalog_product_load_after">
+        <observer name="reservation_catalog_product_load_after" instance="Magenest\Reservation\Observer\Option\Add"/>
+    </event>
+    <event name="checkout_cart_product_add_after">
+        <observer name="reservation_checkout_cart_product_add_after" instance="Magenest\Reservation\Observer\Option\Cart" />
+    </event>
+
+</config>

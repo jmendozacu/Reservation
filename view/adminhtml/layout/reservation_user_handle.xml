@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_Reservation::css/style.css"/>
+    </head>
+    <body>
+        <referenceBlock name="adminhtml.user.edit.tabs">
+            <action method="addTabAfter">
+                <argument name="tabId" xsi:type="string">schedule_section</argument>
+                <argument name="tab" xsi:type="string">Magenest\Reservation\Block\Adminhtml\User\Edit\Tab\Schedule</argument>
+                <argument name="afterTabId" xsi:type="string">roles_section</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="adminhtml.user.edit.tabs">
+            <action method="addTabAfter">
+                <argument name="tabId" xsi:type="string">intro_section</argument>
+                <argument name="tab" xsi:type="string">Magenest\Reservation\Block\Adminhtml\User\Edit\Tab\Intro</argument>
+                <argument name="afterTabId" xsi:type="string">schedule_section</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="adminhtml.user.edit.tabs">
+            <action method="addTabAfter">
+                <argument name="tabId" xsi:type="string">reservation_section</argument>
+                <argument name="tab" xsi:type="string">Magenest\Reservation\Block\Adminhtml\User\Edit\Tab\Reservation</argument>
+                <argument name="afterTabId" xsi:type="string">intro_section</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <uiComponent name="reservation_staff_listing"/>
+        </referenceContainer>
+        <referenceContainer name="js">
+            <block class="Magenest\Reservation\Block\Adminhtml\User\Edit\Js" template="user/edit/js.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

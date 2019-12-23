@@ -1,0 +1,132 @@
+<?php
+/** @var \Magenest\Reservation\Block\Adminhtml\ReservationRule\Edit\Js $block */
+$timeListArray = $block->getTimeList();
+$timeListJson = json_encode($timeListArray);
+?>
+
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+
+        var timeListJson = '<?php echo $timeListJson; ?>';
+        var timeListArray = JSON.parse(timeListJson);
+
+
+        var optionElement = document.getElementById("reservation_rule_rule_option");
+        var fromElement1 = document.getElementById("reservation_rule_rule_from_1");
+        var toElement1 = document.getElementById("reservation_rule_rule_to_1");
+        var fromElement2Day = document.getElementById("reservation_rule_rule_from_2_day");
+        var toElement2Day = document.getElementById("reservation_rule_rule_to_2_day");
+        var fromElement2Time = document.getElementById("reservation_rule_rule_from_2_time");
+        var toElement2Time = document.getElementById("reservation_rule_rule_to_2_time");
+        var fromElement3Day = document.getElementById("reservation_rule_rule_from_3_day");
+        var toElement3Day = document.getElementById("reservation_rule_rule_to_3_day");
+        var fromElement3Time = document.getElementById("reservation_rule_rule_from_3_time");
+        var toElement3Time = document.getElementById("reservation_rule_rule_to_3_time");
+        var fromElement4 = document.getElementById("reservation_rule_rule_from_4");
+        var toElement4 = document.getElementById("reservation_rule_rule_to_4");
+        var fromElement5 = document.getElementById("reservation_rule_rule_5");
+        // hide all elements
+        $(fromElement1).parent().parent().hide();
+        $(toElement1).parent().parent().hide();
+        $(fromElement2Day).parent().parent().hide();
+        $(toElement2Day).parent().parent().hide();
+        $(fromElement2Time).parent().parent().hide();
+        $(toElement2Time).parent().parent().hide();
+        $(fromElement3Day).parent().parent().hide();
+        $(toElement3Day).parent().parent().hide();
+        $(fromElement3Time).parent().parent().hide();
+        $(toElement3Time).parent().parent().hide();
+        $(fromElement4).parent().parent().hide();
+        $(toElement4).parent().parent().hide();
+        $(fromElement5).parent().parent().hide();
+//         check option, show necessary elements
+        if ($(optionElement).val() == 1) {
+            $(fromElement1).parent().parent().show();
+            $(toElement1).parent().parent().show();
+            if (timeListArray != null) {
+                var from0 = document.getElementsByName("rule[rule_from_1][]");
+                for (i = 0; i < from0.length; i++) {
+                    from0[i].value = timeListArray[0][i];
+                }
+                var to0 = document.getElementsByName("rule[rule_to_1][]");
+                for (i = 0; i < to0.length; i++) {
+                    to0[i].value = timeListArray[1][i];
+                }
+            }
+        } else if ($(optionElement).val() == 2) {
+            $(fromElement2Day).parent().parent().show();
+            $(toElement2Day).parent().parent().show();
+            $(fromElement2Time).parent().parent().show();
+            $(toElement2Time).parent().parent().show();
+            if (timeListArray != null) {
+                var from0 = document.getElementsByName("rule[rule_from_2_time][]");
+                for (i = 0; i < from0.length; i++) {
+                    from0[i].value = timeListArray[0][i];
+                }
+                var to0 = document.getElementsByName("rule[rule_to_2_time][]");
+                for (i = 0; i < to0.length; i++) {
+                    to0[i].value = timeListArray[1][i];
+                }
+            }
+        } else if ($(optionElement).val() == 3) {
+            $(fromElement3Day).parent().parent().show();
+            $(toElement3Day).parent().parent().show();
+            $(fromElement3Time).parent().parent().show();
+            $(toElement3Time).parent().parent().show();
+            if (timeListArray != null) {
+                var from0 = document.getElementsByName("rule[rule_from_3_time][]");
+                for (i = 0; i < from0.length; i++) {
+                    from0[i].value = timeListArray[0][i];
+                }
+                var to0 = document.getElementsByName("rule[rule_to_3_time][]");
+                for (i = 0; i < to0.length; i++) {
+                    to0[i].value = timeListArray[1][i];
+                }
+            }
+
+        } else if ($(optionElement).val() == 4) {
+            $(fromElement4).parent().parent().show();
+            $(toElement4).parent().parent().show();
+        } else if ($(optionElement).val() == 5) {
+            $(fromElement5).parent().parent().show();
+        }
+        $(optionElement).change(function () {
+            // hide all elements
+            $(fromElement1).parent().parent().hide();
+            $(toElement1).parent().parent().hide();
+            $(fromElement2Day).parent().parent().hide();
+            $(toElement2Day).parent().parent().hide();
+            $(fromElement2Time).parent().parent().hide();
+            $(toElement2Time).parent().parent().hide();
+            $(fromElement3Day).parent().parent().hide();
+            $(toElement3Day).parent().parent().hide();
+            $(fromElement3Time).parent().parent().hide();
+            $(toElement3Time).parent().parent().hide();
+            $(fromElement4).parent().parent().hide();
+            $(toElement4).parent().parent().hide();
+            $(fromElement5).parent().parent().hide();
+            // show necessary elements
+            if ($(this).val() == 1) {
+                $(fromElement1).parent().parent().show();
+                $(toElement1).parent().parent().show();
+            } else if ($(this).val() == 2) {
+                $(fromElement2Day).parent().parent().show();
+                $(toElement2Day).parent().parent().show();
+                $(fromElement2Time).parent().parent().show();
+                $(toElement2Time).parent().parent().show();
+            } else if ($(this).val() == 3) {
+                $(fromElement3Day).parent().parent().show();
+                $(toElement3Day).parent().parent().show();
+                $(fromElement3Time).parent().parent().show();
+                $(toElement3Time).parent().parent().show();
+            } else if ($(this).val() == 4) {
+                $(fromElement4).parent().parent().show();
+                $(toElement4).parent().parent().show();
+            } else if ($(this).val() == 5) {
+                $(fromElement5).parent().parent().show();
+            }
+        });
+    });
+</script>
